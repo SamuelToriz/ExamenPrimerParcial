@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">AlanTorizExamen</string>
+    <string name="text_list_login_view">Registrar usuario</string>
+    <string name="txt_list_home_view">Crear encuesta</string>
+    <string name="txt_list_salir">Salir del sistema</string>
+    <string name="txtv_correo">Escriba su correo</string>
+    <string name="btn_Iniciar_Sesion">Iniciar Sesion</string>
+    <string name="email">Email Address</string>
+    <string name="password">Password</string>
+    <string name="welcome">Bienvenido</string>
+    <string name="btn_registrarse">Registrarse</string>
+    <string name="txtv_name">Escriba su nombre</string>
+    <string name="logo_columpio">Logo Columpio</string>
+    <string name="txtv_passwordk">Escriba su contrasena</string>
+    <string name="txtvphone">Escriba su celular</string>
+    <string name="txt_survey">Mi encuesta</string>
+    <string name="txtv_wings">Wings</string>
+    <string name="txtv_burgers">Burgers</string>
+    <string name="txtv_hotdogs">Hotdgos</string>
+    <string name="text_familiar">Familiar?</string>
+    <string name="ckbCerveza">Cerveza</string>
+    <string name="ckbRefresco">Refresc</string>
+    <string name="ckbMalteada">Malteada</string>
+    <string name="btnCrear">Crear</string>
+    <string name="btnEditar">Editar</string>
+    <string name="txt_Recomend">Nos Recomendarias?</string>
+</resources>
