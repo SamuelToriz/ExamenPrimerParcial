@@ -5,4 +5,18 @@
         <item>Masculino</item>
         <item>Femenino</item>
     </string-array>
+
+    <string-array name="Locations">
+        <item>Seleccionar</item>
+        <item>Volcanes</item>
+        <item>Pedregal</item>
+        <item>Tlalcoligia</item>
+    </string-array>
+
+    <string-array name="TipoPedido">
+        <item>Seleccionar</item>
+        <item>Llamada</item>
+        <item>WhatsApp</item>
+    </string-array>
+
 </resources>

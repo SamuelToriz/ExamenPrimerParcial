@@ -23,6 +23,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private val listSurvey = ListSurvey()
     private var id:Int=-2
+    private var id2:Int=-4
     private val permission = PermissionsApplications(this@HomeActivity)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +60,8 @@ class HomeActivity : AppCompatActivity() {
     ///Cuando recarga el activity le pasamos el adapatador donde tenemos la lista y se lo pasamos al LISTVIEW
         override fun onRestart() {
             super.onRestart()
-            val adapter = ArrayAdapter<String>(this@HomeActivity, android.R.layout.simple_list_item_1, listSurvey.getStringArray(id))
+        id2 = intent.getIntExtra(Constants.ID, -2)
+            val adapter = ArrayAdapter<String>(this@HomeActivity, android.R.layout.simple_list_item_1, listSurvey.getStringArray(id2))
             binding.ltvSurvey.adapter = adapter
         }
 

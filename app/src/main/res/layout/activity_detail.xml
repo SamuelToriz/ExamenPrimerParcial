@@ -17,18 +17,18 @@
             android:id="@+id/imgLogo"
             android:layout_width="167dp"
             android:layout_height="150dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
+            android:contentDescription="@string/logo_columpio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/columpio"
-            android:contentDescription="@string/logo_columpio" />
+            app:srcCompat="@drawable/columpio" />
 
         <TextView
             android:id="@+id/txtvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:text="TextView"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,9 +39,9 @@
             android:id="@+id/txtGender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginStart="176dp"
+            android:layout_marginTop="20dp"
             android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtvName" />
 
@@ -49,9 +49,9 @@
             android:id="@+id/txtvFood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
             android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtGender" />
 
@@ -59,9 +59,9 @@
             android:id="@+id/txtvDrink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="30dp"
             android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtvFood" />
 
@@ -69,11 +69,61 @@
             android:id="@+id/txtvRelative"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="30dp"
             android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtvDrink" />
+
+        <TextView
+            android:id="@+id/txtvAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="30dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtvRelative" />
+
+        <TextView
+            android:id="@+id/txtvZone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="50dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtGender" />
+
+        <TextView
+            android:id="@+id/txtvtypeOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="50dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtvZone" />
+
+        <TextView
+            android:id="@+id/txtvSocialMedia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="50dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtvtypeOrder" />
+
+        <TextView
+            android:id="@+id/txtvApp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="50dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtvSocialMedia" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

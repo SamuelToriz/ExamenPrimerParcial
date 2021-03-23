@@ -13,28 +13,18 @@
         android:layout_height="wrap_content"
         tools:context=".EditActivity">
 
-        <TextView
-            android:id="@+id/txtSurvey"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="@string/txt_survey"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <EditText
             android:id="@+id/editTextName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:ems="10"
-            android:inputType="textPersonName"
             android:hint="@string/txtv_name"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtSurvey"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
             android:id="@+id/spnGender"
@@ -86,8 +76,8 @@
             android:id="@+id/ckbCerveza"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="48dp"
             android:text="@string/ckbCerveza"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rgbFood" />
@@ -99,18 +89,16 @@
             android:layout_marginTop="50dp"
             android:text="@string/ckbRefresco"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ckbCerveza" />
+            app:layout_constraintStart_toEndOf="@+id/ckbMalteada"
+            app:layout_constraintTop_toBottomOf="@+id/rgbFood" />
 
         <CheckBox
             android:id="@+id/ckbMalteada"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="50dp"
-            android:layout_marginEnd="80dp"
             android:text="@string/ckbMalteada"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ckbCerveza"
             app:layout_constraintTop_toBottomOf="@+id/rgbFood" />
 
@@ -119,28 +107,137 @@
             android:id="@+id/stwFamiliar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="50dp"
-            android:text="@string/text_familiar"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="24dp"
+            android:text="@string/txt_Recomend"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnEditar"
-            app:layout_constraintHorizontal_bias="0.635"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ckbCerveza" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btnEditar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="40dp"
             android:text="@string/btnEditar"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <EditText
+            android:id="@+id/edtAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="15dp"
+            android:ems="10"
+            android:hint="@string/edad"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ckbMalteada" />
+            app:layout_constraintHorizontal_bias="0.724"
+            app:layout_constraintStart_toEndOf="@+id/spnGender"
+            app:layout_constraintTop_toBottomOf="@+id/editTextName"
+            android:importantForAutofill="no" />
+
+        <Spinner
+            android:id="@+id/spnLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="44dp"
+            android:entries="@array/Locations"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ckbCerveza" />
+
+        <TextView
+            android:id="@+id/txtvFavFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/FavFood"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spnGender" />
+
+        <TextView
+            android:id="@+id/txtvFavDrink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/FavDrink"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rgbFood" />
+
+        <TextView
+            android:id="@+id/txtvZone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@string/Zone"
+            app:layout_constraintBottom_toTopOf="@+id/spnLocation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ckbCerveza" />
+
+        <Spinner
+            android:id="@+id/spnTipoPedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:entries="@array/TipoPedido"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtvPedido" />
+
+        <TextView
+            android:id="@+id/txtvSocialMedia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/SocialMedia"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spnTipoPedido" />
+
+        <TextView
+            android:id="@+id/txtvPedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/TipoPedido"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spnLocation" />
+
+        <CheckBox
+            android:id="@+id/ckbFacebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/Facebook"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtvSocialMedia" />
+
+        <CheckBox
+            android:id="@+id/ckbInstagram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/Instagram"
+            app:layout_constraintStart_toEndOf="@+id/ckbFacebook"
+            app:layout_constraintTop_toBottomOf="@+id/txtvSocialMedia" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/swtApp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="136dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/AppMovil"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ckbRefresco" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

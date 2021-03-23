@@ -28,4 +28,13 @@
     <string name="columpio">Restaurante \"El Columpio\"</string>
     <string name="txt_list">Ver Lista</string>
     <string name="text_recycler">Recycler View</string>
+    <string name="edad">Escriba su edad</string>
+    <string name="FavDrink">Bebida preferida</string>
+    <string name="FavFood">Comida preferida</string>
+    <string name="Zone">Zona que nos visita</string>
+    <string name="SocialMedia">Social Media que conoces de nosotrs</string>
+    <string name="TipoPedido">Como haces tus pedidos?</string>
+    <string name="Facebook">Facebook</string>
+    <string name="Instagram">Instagram</string>
+    <string name="AppMovil">Utilizarias una app Movil?</string>
 </resources>

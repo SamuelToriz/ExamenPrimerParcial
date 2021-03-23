@@ -34,13 +34,20 @@ class EditActivity : AppCompatActivity() {
             binding.ckbRefresco.isChecked = survey.refresco
             binding.ckbMalteada.isChecked = survey.malteada
 
+            binding.ckbFacebook.isChecked = survey.facebook
+            binding.ckbInstagram.isChecked = survey.Instagram
+            binding.spnLocation.setSelection(survey.Zone)
+            binding.spnTipoPedido.setSelection(survey.typeOrder)
+            binding.swtApp.isChecked = survey.appMovil
+            binding.edtAge.setText(survey.age)
+
             when (survey.food)
             {
                 "Wings" ->
                 {
                     binding.rgbFood.check(binding.rdbWings.id)
                 }
-                "Hamburgesas" -> {
+                "Burgers" -> {
                     binding.rgbFood.check(binding.rdbBurgers.id)
                 }
                 "Hotdogs" -> {
@@ -48,11 +55,16 @@ class EditActivity : AppCompatActivity() {
                 }
             }
             binding.btnEditar.setOnClickListener() {
-                if(binding.editTextName.text.isNotEmpty() && binding.spnGender.selectedItemPosition!=0 && binding.rgbFood.checkedRadioButtonId!=-1)
+                if(binding.editTextName.text.isNotEmpty() && binding.spnGender.selectedItemPosition!=0 && binding.rgbFood.checkedRadioButtonId!=-1
+                        && binding.spnLocation.selectedItemPosition!=0 && binding.spnTipoPedido.selectedItemPosition!=0)
                 {
                     val survey = EntitySurvey()
 
                     survey.nameSurvey = binding.editTextName.text.toString()
+                    survey.nameSurvey = binding.editTextName.text.toString()
+                    survey.age = binding.edtAge.text.toString()
+                    survey.Zone = binding.spnLocation.selectedItemPosition
+                    survey.typeOrder = binding.spnTipoPedido.selectedItemPosition
                     survey.gender = binding.spnGender.selectedItemPosition
 
                     when (binding.rgbFood.checkedRadioButtonId) {
@@ -70,6 +82,12 @@ class EditActivity : AppCompatActivity() {
                     survey.malteada = binding.ckbMalteada.isChecked
                     survey.refresco = binding.ckbRefresco.isChecked
                     survey.cerveza = binding.ckbCerveza.isChecked
+
+                    survey.facebook = binding.ckbFacebook.isChecked
+                    survey.Instagram = binding.ckbInstagram.isChecked
+
+                    survey.appMovil = binding.swtApp.isChecked
+                    survey.recomend = binding.stwFamiliar.isChecked
 
                     val index = listSurvey.edit(id,survey)
                     miDialogo(survey.nameSurvey).show()
@@ -124,9 +142,15 @@ class EditActivity : AppCompatActivity() {
         binding.editTextName.setText("")
         binding.spnGender.setSelection(0)
         binding.rgbFood.clearCheck()
-        binding.rdbWings.isChecked = false
-        binding.rdbBurgers.isChecked = false
-        binding.rdbHotdogs.isChecked = false
+        binding.ckbCerveza .isChecked = false
+        binding.ckbMalteada.isChecked = false
+        binding.ckbRefresco.isChecked = false
         binding.stwFamiliar.isChecked = false
+        binding.ckbFacebook.isChecked = false
+        binding.ckbInstagram.isChecked = false
+        binding.swtApp.isChecked = false
+        binding.edtAge.setText("")
+        binding.spnLocation.setSelection(0)
+        binding.spnTipoPedido.setSelection(0)
     }
 }

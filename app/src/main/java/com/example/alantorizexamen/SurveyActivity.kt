@@ -64,13 +64,17 @@ class SurveyActivity : AppCompatActivity() {
 
     fun validateEmptyControls()
     {
-        if(binding.editTextName.text.isNotEmpty() && binding.spnGender.selectedItemPosition!=0 && binding.rgbFood.checkedRadioButtonId!=-1 )
+        if(binding.editTextName.text.isNotEmpty() && binding.spnGender.selectedItemPosition!=0 && binding.rgbFood.checkedRadioButtonId!=-1 &&
+                binding.spnLocation.selectedItemPosition!=0 && binding.spnTipoPedido.selectedItemPosition!=0)
         {
             val survey = EntitySurvey()
 
             survey.id = id
             Log.d(Constants.LOG_TAG,"PRUEBA" + id.toString())
             survey.nameSurvey = binding.editTextName.text.toString()
+            survey.age = binding.edtAge.text.toString()
+            survey.Zone = binding.spnLocation.selectedItemPosition
+            survey.typeOrder = binding.spnTipoPedido.selectedItemPosition
             survey.gender = binding.spnGender.selectedItemPosition
 
             when (binding.rgbFood.checkedRadioButtonId) {
@@ -89,6 +93,12 @@ class SurveyActivity : AppCompatActivity() {
             survey.refresco = binding.ckbRefresco.isChecked
             survey.cerveza = binding.ckbCerveza.isChecked
 
+            survey.facebook = binding.ckbFacebook.isChecked
+            survey.Instagram = binding.ckbInstagram.isChecked
+
+            survey.appMovil = binding.swtApp.isChecked
+            survey.recomend = binding.stwFamiliar.isChecked
+
 
             val index = listSurvey.add(survey)
 
@@ -96,7 +106,9 @@ class SurveyActivity : AppCompatActivity() {
             {
                 Toast.makeText(this@SurveyActivity, "Survey guardado", Toast.LENGTH_SHORT).show()
                 cleanControls()
-                val intent = Intent(this@SurveyActivity, HomeActivity::class.java)
+                val intent = Intent(this@SurveyActivity, HomeActivity::class.java).apply {
+                    putExtra(Constants.ID, id)
+                }
                 startActivity(intent)
                 finish()
 
@@ -120,5 +132,11 @@ class SurveyActivity : AppCompatActivity() {
         binding.ckbMalteada.isChecked = false
         binding.ckbRefresco.isChecked = false
         binding.stwFamiliar.isChecked = false
+        binding.ckbFacebook.isChecked = false
+        binding.ckbInstagram.isChecked = false
+        binding.swtApp.isChecked = false
+        binding.edtAge.setText("")
+        binding.spnLocation.setSelection(0)
+        binding.spnTipoPedido.setSelection(0)
     }
 }

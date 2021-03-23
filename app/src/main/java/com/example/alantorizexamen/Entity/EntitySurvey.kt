@@ -10,8 +10,15 @@ class EntitySurvey (
     var cerveza : Boolean,
     var refresco : Boolean,
     var malteada : Boolean,
-    var recomend : Boolean)
+    var recomend : Boolean,
+    var age : String,
+    var Zone : Int,
+    var typeOrder : Int,
+    var facebook:Boolean,
+    var Instagram:Boolean,
+    var appMovil:Boolean)
 
 {
-    constructor():this(0,"", 0,"", false, false, false,  false)
+    constructor():this(0,"", 0,"", false, false, false,
+            false,"",0,0,false,false,false)
 }
