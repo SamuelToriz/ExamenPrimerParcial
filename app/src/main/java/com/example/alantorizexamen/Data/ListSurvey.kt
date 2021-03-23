@@ -76,6 +76,16 @@ class ListSurvey {
         return answer
     }
 
+    fun existIdFilter(id : Int): ArrayList<EntitySurvey>
+    {
+
+        if(listSurvey.filter { e-> e.id == id }.count()==1)
+        {
+           return listSurvey
+        }
+        return listSurvey
+    }
+
     fun existEmailFilter(name:String): Boolean
     {
         var answer: Boolean = false
@@ -105,11 +115,15 @@ class ListSurvey {
         return listSurvey[index]
     }
 
-    fun getEntitySurvey():Array<EntitySurvey>
+    fun getEntitySurveyArray():Array<EntitySurvey>
     {
         return listSurvey.toTypedArray()
     }
 
+    fun getListSurveyArray() : ArrayList<EntitySurvey>
+    {
+        return listSurvey
+    }
 
     companion object
     {

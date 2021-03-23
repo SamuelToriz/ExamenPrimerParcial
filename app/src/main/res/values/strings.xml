@@ -24,4 +24,8 @@
     <string name="btnCrear">Crear</string>
     <string name="btnEditar">Editar</string>
     <string name="txt_Recomend">Nos Recomendarias?</string>
+    <string name="autor">By Samuel Toriz</string>
+    <string name="columpio">Restaurante \"El Columpio\"</string>
+    <string name="txt_list">Ver Lista</string>
+    <string name="text_recycler">Recycler View</string>
 </resources>

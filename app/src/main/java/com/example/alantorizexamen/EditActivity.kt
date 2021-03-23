@@ -100,7 +100,7 @@ class EditActivity : AppCompatActivity() {
             {
                 Toast.makeText(this@EditActivity, "Survey editado", Toast.LENGTH_SHORT).show()
                 cleanControls()
-                val intent = Intent(this@EditActivity, HomeActivity::class.java)
+                val intent = Intent(this@EditActivity, MyListActivity::class.java)
                 startActivity(intent)
                 finish()
             }

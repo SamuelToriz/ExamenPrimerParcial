@@ -10,6 +10,7 @@ import com.example.alantorizexamen.Data.ListSurvey
 import com.example.alantorizexamen.Data.ListUsers
 import com.example.alantorizexamen.Entity.EntitySurvey
 import com.example.alantorizexamen.Entity.EntityUser
+import com.example.alantorizexamen.Tools.Constants
 import com.example.alantorizexamen.databinding.ActivityLoginBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -42,6 +43,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
                 cleanControls()
                 val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                 startActivity(intent)
+                finish()
 
             } else
             {
@@ -55,11 +57,13 @@ override fun onCreate(savedInstanceState: Bundle?) {
     }
 }
 
+    ///Encrustar menu
 override fun onCreateOptionsMenu(menu: Menu?): Boolean {
     menuInflater.inflate(R.menu.menulogin, menu)
     return super.onCreateOptionsMenu(menu)
 }
 
+    ///DArle funcionalidad a los botones
 override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
     when(item.itemId){
@@ -67,11 +71,13 @@ override fun onOptionsItemSelected(item: MenuItem): Boolean {
         R.id.itmList->{
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
     return super.onOptionsItemSelected(item)
 }
+
 
 fun cleanControls()
 {

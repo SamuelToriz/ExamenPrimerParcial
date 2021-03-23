@@ -28,6 +28,7 @@ class RegisterActivity : AppCompatActivity() {
             {
                 val user = EntityUser()
 
+                user.id = listUser.setId()
                 user.name = binding.editTextName.text.toString()
                 user.email = binding.editTextEmail.text.toString()
                 user.password = binding.editTextPassword.text.toString()
@@ -42,6 +43,7 @@ class RegisterActivity : AppCompatActivity() {
                     cleanControls()
                     val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                     startActivity(intent)
+                    finish()
 
                 } else {
                     Snackbar.make(it, "Usuario NO guardado ", Snackbar.LENGTH_LONG).show()

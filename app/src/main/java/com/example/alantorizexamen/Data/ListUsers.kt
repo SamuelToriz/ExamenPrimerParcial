@@ -117,9 +117,19 @@ class ListUsers {
         return listUsers[index]
     }
 
-    fun getEntityUser():Array<EntityUser>
+    fun getEntityUserArray():Array<EntityUser>
     {
         return listUsers.toTypedArray()
+    }
+
+    fun getListUserArray() : ArrayList<EntityUser>
+    {
+        return listUsers
+    }
+
+    fun setId() : Int
+    {
+        return listUsers.size-1
     }
 
 

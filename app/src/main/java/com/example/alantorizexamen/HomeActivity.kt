@@ -1,6 +1,7 @@
 package com.example.alantorizexamen
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -11,18 +12,24 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.alantorizexamen.Data.ListSurvey
+import com.example.alantorizexamen.Data.ListUsers
+import com.example.alantorizexamen.Entity.EntityUser
 import com.example.alantorizexamen.Tools.Constants
+import com.example.alantorizexamen.Tools.PermissionsApplications
 import com.example.alantorizexamen.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private val listSurvey = ListSurvey()
+    private val permission = PermissionsApplications(this@HomeActivity)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
 
         supportActionBar?.setTitle("Home")
         listSurvey.showListSurveys()
@@ -30,21 +37,28 @@ class HomeActivity : AppCompatActivity() {
         val adapter = ArrayAdapter<String>(this@HomeActivity, android.R.layout.simple_list_item_1, listSurvey.getStringArray())
         binding.ltvSurvey.adapter = adapter
 
+        if(!permission.hasPermissions(Constants.LOCATION))
+        {
+            permission.acceptPermissionLocation(Constants.LOCATION, 1)
+        }
+
+
 
         binding.ltvSurvey.setOnItemClickListener { adapterView: AdapterView<*>, view1: View, position: Int, id: Long ->
 
             val survey = listSurvey.getSurvey(position)
+            if(!permission.hasPermissions(Constants.MICROPHONE))
+            {
+                permission.acceptPermissionMicrophone(Constants.MICROPHONE, 1)
+            }
             miDialogo(position, survey.nameSurvey).show()
         }
     }
 
+    ///Cuando recarga el activity le pasamos el adapatador donde tenemos la lista y se lo pasamos al LISTVIEW
         override fun onRestart() {
             super.onRestart()
-            val adapter = ArrayAdapter<String>(
-                this@HomeActivity,
-                android.R.layout.simple_list_item_1,
-                listSurvey.getStringArray()
-            )
+            val adapter = ArrayAdapter<String>(this@HomeActivity, android.R.layout.simple_list_item_1, listSurvey.getStringArray())
             binding.ltvSurvey.adapter = adapter
         }
 
@@ -62,8 +76,15 @@ class HomeActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
 
+                R.id.itmVerLista -> {
+                    val intent = Intent(this@HomeActivity, MyListActivity::class.java)
+                    startActivity(intent)
+                }
+
                 R.id.itmlisSalir -> {
                     finish()
+                    //Termina el sistema
+                    super.onBackPressed()
                 }
             }
 
@@ -80,10 +101,7 @@ class HomeActivity : AppCompatActivity() {
                 var answer = listSurvey.delete(name)
                 if (answer == true) {
                     Toast.makeText(this@HomeActivity, "Survey eliminada", Toast.LENGTH_SHORT).show()
-                    val adapter = ArrayAdapter<String>(
-                        this@HomeActivity,
-                        android.R.layout.simple_list_item_1,
-                        listSurvey.getStringArray()
+                    val adapter = ArrayAdapter<String>(this@HomeActivity, android.R.layout.simple_list_item_1, listSurvey.getStringArray()
                     )
                     binding.ltvSurvey.adapter = adapter
                 } else {
@@ -94,7 +112,7 @@ class HomeActivity : AppCompatActivity() {
             miAlerta.setNegativeButton("Editar") { _, _ ->
 
                 val intent = Intent(this@HomeActivity, EditActivity::class.java).apply {
-
+                    ///Pasa valores por la posicion
                     putExtra(Constants.ID, position)
                 }
                 startActivity(intent)
@@ -109,4 +127,19 @@ class HomeActivity : AppCompatActivity() {
 
             return miAlerta.create()
         }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode)
+        {
+            1-> {
+                if(grantResults[0]!=PackageManager.PERMISSION_GRANTED)
+                {
+                    Toast.makeText(this@HomeActivity, "Es obligatorio ACEPTAR ESTE PERMISO para utilizar la app", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+            }
+        }
+    }
 }
