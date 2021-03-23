@@ -22,6 +22,7 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private val listSurvey = ListSurvey()
+    private var id:Int=-2
     private val permission = PermissionsApplications(this@HomeActivity)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,12 +30,12 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        id = intent.getIntExtra(Constants.ID, -2)
 
         supportActionBar?.setTitle("Home")
         listSurvey.showListSurveys()
 
-        val adapter = ArrayAdapter<String>(this@HomeActivity, android.R.layout.simple_list_item_1, listSurvey.getStringArray())
+        val adapter = ArrayAdapter<String>(this@HomeActivity, android.R.layout.simple_list_item_1, listSurvey.getStringArray(id))
         binding.ltvSurvey.adapter = adapter
 
         if(!permission.hasPermissions(Constants.LOCATION))
@@ -58,7 +59,7 @@ class HomeActivity : AppCompatActivity() {
     ///Cuando recarga el activity le pasamos el adapatador donde tenemos la lista y se lo pasamos al LISTVIEW
         override fun onRestart() {
             super.onRestart()
-            val adapter = ArrayAdapter<String>(this@HomeActivity, android.R.layout.simple_list_item_1, listSurvey.getStringArray())
+            val adapter = ArrayAdapter<String>(this@HomeActivity, android.R.layout.simple_list_item_1, listSurvey.getStringArray(id))
             binding.ltvSurvey.adapter = adapter
         }
 
@@ -72,12 +73,16 @@ class HomeActivity : AppCompatActivity() {
             when (item.itemId) {
 
                 R.id.itmlistCrearEncuesta -> {
-                    val intent = Intent(this@HomeActivity, SurveyActivity::class.java)
+                    val intent = Intent(this@HomeActivity, SurveyActivity::class.java).apply {
+                        putExtra(Constants.ID, id)
+                    }
                     startActivity(intent)
                 }
 
                 R.id.itmVerLista -> {
-                    val intent = Intent(this@HomeActivity, MyListActivity::class.java)
+                    val intent = Intent(this@HomeActivity, MyListActivity::class.java).apply {
+                       putExtra(Constants.ID, id)
+                    }
                     startActivity(intent)
                 }
 
@@ -101,8 +106,7 @@ class HomeActivity : AppCompatActivity() {
                 var answer = listSurvey.delete(name)
                 if (answer == true) {
                     Toast.makeText(this@HomeActivity, "Survey eliminada", Toast.LENGTH_SHORT).show()
-                    val adapter = ArrayAdapter<String>(this@HomeActivity, android.R.layout.simple_list_item_1, listSurvey.getStringArray()
-                    )
+                    val adapter = ArrayAdapter<String>(this@HomeActivity, android.R.layout.simple_list_item_1, listSurvey.getStringArray(id))
                     binding.ltvSurvey.adapter = adapter
                 } else {
                     Toast.makeText(this@HomeActivity, "Survey NO eliminado", Toast.LENGTH_SHORT)

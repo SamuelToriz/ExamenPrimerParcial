@@ -99,12 +99,15 @@ class ListSurvey {
     }
 
 
-    fun getStringArray():Array<String>
+    fun getStringArray(id:Int):Array<String>
     {
         val answerList = arrayListOf<String>()
         for((index, item)in listSurvey.withIndex())
         {
-            answerList.add("${item.nameSurvey}")
+            if(item.id==id)
+            {
+                answerList.add("${item.nameSurvey}")
+            }
         }
         return answerList.toTypedArray()
     }
@@ -120,9 +123,17 @@ class ListSurvey {
         return listSurvey.toTypedArray()
     }
 
-    fun getListSurveyArray() : ArrayList<EntitySurvey>
+    fun getListSurveyArray(id:Int) : ArrayList<EntitySurvey>
     {
-        return listSurvey
+        var listSurveyFiltered = arrayListOf<EntitySurvey>()
+        for((i, item) in listSurvey.withIndex())
+        {
+            if(item.id==id)
+            {
+                listSurveyFiltered.add(item)
+            }
+        }
+        return listSurveyFiltered
     }
 
     companion object

@@ -14,7 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlanTorizExamen">
         <activity android:name=".MyListActivity"></activity>
-        <activity android:name=".ViewAdapterActivity" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,11 +27,6 @@
         <activity android:name=".DetailActivity" />
         <activity android:name=".EditActivity" />
         <activity android:name=".LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

@@ -5,12 +5,14 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.alantorizexamen.Adapters.SurveyAdapter
 import com.example.alantorizexamen.Data.ListSurvey
+import com.example.alantorizexamen.Tools.Constants
 import com.example.alantorizexamen.databinding.ActivityMylistactivityBinding
 
 class MyListActivity : AppCompatActivity()
 {
     private lateinit var binding : ActivityMylistactivityBinding
     private val listSurvey = ListSurvey()
+    private var id:Int=-2
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -19,8 +21,9 @@ class MyListActivity : AppCompatActivity()
         setContentView(binding.root)
 
         supportActionBar?.setTitle("My List Activity")
-
+        id = intent.getIntExtra(Constants.ID, -2)
         buildRecyclerView()
+
 
 
     }
@@ -32,7 +35,7 @@ class MyListActivity : AppCompatActivity()
 
     fun buildRecyclerView()
     {
-        val list = listSurvey.getListSurveyArray()
+        val list = listSurvey.getListSurveyArray(id)
         val adapter = SurveyAdapter(list, this@MyListActivity)
         val linearLayout = LinearLayoutManager(this@MyListActivity, LinearLayoutManager.VERTICAL, false)
 

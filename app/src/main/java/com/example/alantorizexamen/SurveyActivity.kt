@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.example.alantorizexamen.Data.ListSurvey
 import com.example.alantorizexamen.Data.ListUsers
@@ -19,7 +20,7 @@ class SurveyActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivitySurveyBinding
     private val listSurvey = ListSurvey()
-    private val listUser = ListUsers();
+    private var id:Int =-3
     private val permission = PermissionsApplications(this@SurveyActivity)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +29,7 @@ class SurveyActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.setTitle("Survey")
+        id = intent.getIntExtra(Constants.ID, -3)
 
         binding.btnCrear.setOnClickListener() {
             if(!permission.hasPermissions(Constants.STORAGE))
@@ -65,9 +67,9 @@ class SurveyActivity : AppCompatActivity() {
         if(binding.editTextName.text.isNotEmpty() && binding.spnGender.selectedItemPosition!=0 && binding.rgbFood.checkedRadioButtonId!=-1 )
         {
             val survey = EntitySurvey()
-            val user = EntityUser()
 
-            survey.id = user.id
+            survey.id = id
+            Log.d(Constants.LOG_TAG,"PRUEBA" + id.toString())
             survey.nameSurvey = binding.editTextName.text.toString()
             survey.gender = binding.spnGender.selectedItemPosition
 

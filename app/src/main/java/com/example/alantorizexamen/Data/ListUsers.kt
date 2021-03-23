@@ -132,6 +132,20 @@ class ListUsers {
         return listUsers.size-1
     }
 
+    fun getId(email:String, pass:String) : Int
+    {
+
+        var id:Int=-1
+        for((index, item)in listUsers.withIndex())
+        {
+            if(item.email==email && item.password ==pass)
+            {
+                id = item.id
+                break
+            }
+        }
+        return id
+    }
 
     companion object
     {

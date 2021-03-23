@@ -39,13 +39,17 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
             if (index == true && indexx==true)
             {
+                user.id = listUsers.getId(user.email, user.password)
                 Toast.makeText(this@LoginActivity, "Usuario encontrado", Toast.LENGTH_SHORT).show()
                 cleanControls()
-                val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                val intent = Intent(this@LoginActivity, HomeActivity::class.java).apply {
+                    putExtra(Constants.ID, user.id)
+                }
                 startActivity(intent)
                 finish()
 
-            } else
+            }
+            else
             {
                 Snackbar.make(it, "Usuario NO encontrado", Snackbar.LENGTH_LONG).show()
             }
