@@ -1,5 +1,7 @@
 package com.example.alantorizexamen
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +16,7 @@ import com.example.alantorizexamen.Tools.Constants
 import com.example.alantorizexamen.Tools.PermissionsApplications
 import com.example.alantorizexamen.databinding.ActivitySurveyBinding
 import com.google.android.material.snackbar.Snackbar
+import java.util.*
 
 
 class SurveyActivity : AppCompatActivity() {
@@ -34,13 +37,46 @@ class SurveyActivity : AppCompatActivity() {
         binding.btnCrear.setOnClickListener() {
             if(!permission.hasPermissions(Constants.STORAGE))
             {
-                permission.acceptPermissionStorage(Constants.STORAGE, 1)
+                permission.acceptPermission(Constants.STORAGE, 1)
             }
             else
             {
                 validateEmptyControls()
             }
 
+        }
+
+        binding.editDate.setOnClickListener {
+            val myCalendar = Calendar.getInstance()
+
+            var year = myCalendar.get(Calendar.YEAR)
+            var month = myCalendar.get(Calendar.MONTH)
+            var day = myCalendar.get(Calendar.DAY_OF_MONTH)
+
+            /// y,m,d son las que se detonan en el evento
+            val dpd = DatePickerDialog(this@SurveyActivity, DatePickerDialog.OnDateSetListener { view, y, m, d ->
+
+
+
+                binding.editDate.setText("${twoDigits(d)}/${twoDigits(m+1)}/$y")
+
+            },year, month, day)
+
+            dpd.show()
+        }
+
+        binding.editTime.setOnClickListener {
+            val myCalendar = Calendar.getInstance()
+            val hourOfDay = myCalendar.get(Calendar.HOUR_OF_DAY)
+            val minute = myCalendar.get(Calendar.MINUTE)
+
+            val tpd = TimePickerDialog(this@SurveyActivity, TimePickerDialog.OnTimeSetListener { view, h, m ->
+
+                binding.editTime.setText("${twoDigits(h)}:${twoDigits(m)}")
+
+            },hourOfDay, minute,false)
+
+            tpd.show()
         }
     }
 
@@ -50,13 +86,14 @@ class SurveyActivity : AppCompatActivity() {
         when(requestCode)
         {
             1-> {
-                if(grantResults[0]!= PackageManager.PERMISSION_GRANTED)
+                if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 {
-                    Toast.makeText(this@SurveyActivity, "Es obligatorio ACEPTAR ESTE PERMISO para utilizar la app", Toast.LENGTH_SHORT).show()
+                    validateEmptyControls()
                 }
                 else
                 {
-                    validateEmptyControls()
+                    Toast.makeText(this@SurveyActivity, "Es obligatorio ACEPTAR ESTE PERMISO para utilizar la app", Toast.LENGTH_SHORT).show()
+
                 }
             }
         }
@@ -65,7 +102,8 @@ class SurveyActivity : AppCompatActivity() {
     fun validateEmptyControls()
     {
         if(binding.editTextName.text.isNotEmpty() && binding.spnGender.selectedItemPosition!=0 && binding.rgbFood.checkedRadioButtonId!=-1 &&
-                binding.spnLocation.selectedItemPosition!=0 && binding.spnTipoPedido.selectedItemPosition!=0)
+                binding.spnLocation.selectedItemPosition!=0 && binding.spnTipoPedido.selectedItemPosition!=0 && binding.editDate.text.isNotEmpty()
+                && binding.editTime.text.isNotEmpty())
         {
             val survey = EntitySurvey()
 
@@ -76,6 +114,8 @@ class SurveyActivity : AppCompatActivity() {
             survey.Zone = binding.spnLocation.selectedItemPosition
             survey.typeOrder = binding.spnTipoPedido.selectedItemPosition
             survey.gender = binding.spnGender.selectedItemPosition
+            survey.date = binding.editDate.text.toString()
+            survey.time = binding.editTime.text.toString()
 
             when (binding.rgbFood.checkedRadioButtonId) {
                 binding.rdbWings.id -> {
@@ -138,5 +178,14 @@ class SurveyActivity : AppCompatActivity() {
         binding.edtAge.setText("")
         binding.spnLocation.setSelection(0)
         binding.spnTipoPedido.setSelection(0)
+        binding.editTime.setText("")
+        binding.editDate.setText("")
     }
+
+
+    fun twoDigits(number:Int):String
+    {
+        return if(number<=9) "0$number" else number.toString()
+    }
+
 }

@@ -23,6 +23,11 @@ class PermissionsApplications (var context: Context)
         return answer
     }
 
+    fun acceptPermission(listPermissions: Array<String>, requestCode:Int)
+    {
+        ActivityCompat.requestPermissions(context as Activity, listPermissions, requestCode)
+    }
+
     fun acceptPermissionLocation(listPermissions: Array<String>, requestCode:Int)
     {
         ActivityCompat.requestPermissions(context as Activity, listPermissions, requestCode)

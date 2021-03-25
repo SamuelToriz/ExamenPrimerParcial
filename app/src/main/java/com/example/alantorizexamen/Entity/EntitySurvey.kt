@@ -16,9 +16,11 @@ class EntitySurvey (
     var typeOrder : Int,
     var facebook:Boolean,
     var Instagram:Boolean,
-    var appMovil:Boolean)
+    var appMovil:Boolean,
+    var date:String,
+    var time:String)
 
 {
     constructor():this(0,"", 0,"", false, false, false,
-            false,"",0,0,false,false,false)
+            false,"",0,0,false,false,false,"","")
 }

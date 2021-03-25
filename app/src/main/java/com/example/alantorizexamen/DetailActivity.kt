@@ -39,6 +39,9 @@ class DetailActivity : AppCompatActivity() {
                                     else if(survey.Zone==3) "Tlalcoligia" else "zona no seleccionada"}"
             binding.txtvApp.text = "El usuario: ${if(survey.appMovil) "Usaria nuestra AppMovil" else "No usaria nuestra AppMovil"}"
 
+            binding.txtvDate.text = "Fecha del survey: ${survey.date}"
+            binding.txtvTime.text = "Hora del survey: ${survey.time}"
+
         }
         else
         {

@@ -37,4 +37,6 @@
     <string name="Facebook">Facebook</string>
     <string name="Instagram">Instagram</string>
     <string name="AppMovil">Utilizarias una app Movil?</string>
+    <string name="hint_date">Click para fecha</string>
+    <string name="hint_time">Click para hora</string>
 </resources>

@@ -192,8 +192,8 @@
             android:id="@+id/txtvSocialMedia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
             android:text="@string/SocialMedia"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spnTipoPedido" />
@@ -228,15 +228,42 @@
             app:layout_constraintStart_toEndOf="@+id/ckbFacebook"
             app:layout_constraintTop_toBottomOf="@+id/txtvSocialMedia" />
 
+
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/swtApp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="136dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="4dp"
             android:text="@string/AppMovil"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ckbRefresco" />
+
+        <EditText
+            android:id="@+id/editDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="40dp"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="@string/hint_date"
+            android:inputType="date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/swtApp" />
+
+        <EditText
+            android:id="@+id/editTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="76dp"
+            android:layout_marginEnd="16dp"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="@string/hint_time"
+            android:inputType="date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editDate" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

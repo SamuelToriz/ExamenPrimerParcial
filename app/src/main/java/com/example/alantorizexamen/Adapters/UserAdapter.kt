@@ -40,6 +40,9 @@ class SurveyAdapter(val surveyList: ArrayList<EntitySurvey>, val context: Contex
         holder.txtGender.text = if(surveyList[position].gender==1) "Masculino" else "Femenino"
         holder.email.text = if(surveyList[position].recomend==true) "Nos Recomendaria" else "No nos recomendaria"
         holder.imgUser.setImageResource(if(surveyList[position].gender==1) (R.drawable.boy) else (R.drawable.girl))
+        holder.txtvDate.text = "Fecha de creacion ${surveyList[position].date}"
+        holder.txtvTime.text = "Hora de creacion ${surveyList[position].time}"
+
 
         holder.btnDelete.setOnClickListener{
             miDialogo(surveyList[position].nameSurvey, it).show()
@@ -100,4 +103,6 @@ class SurveyHolder(view:View):RecyclerView.ViewHolder(view)
     val btnDelete = binding.btnDelete
     val btnEdit = binding.btnEdit
     val btnView = binding.btnView
+    val txtvDate = binding.txtvDate
+    val txtvTime = binding.txtvTime
 }

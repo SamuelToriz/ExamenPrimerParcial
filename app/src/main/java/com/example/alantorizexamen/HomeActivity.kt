@@ -53,7 +53,11 @@ class HomeActivity : AppCompatActivity() {
             {
                 permission.acceptPermissionMicrophone(Constants.MICROPHONE, 1)
             }
-            miDialogo(position, survey.nameSurvey).show()
+            else
+            {
+                miDialogo(position, survey.nameSurvey).show()
+            }
+
         }
     }
 

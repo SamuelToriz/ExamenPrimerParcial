@@ -1,5 +1,7 @@
 package com.example.alantorizexamen
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +12,7 @@ import com.example.alantorizexamen.Entity.EntitySurvey
 import com.example.alantorizexamen.Tools.Constants
 import com.example.alantorizexamen.databinding.ActivityEditBinding
 import com.google.android.material.snackbar.Snackbar
+import java.util.*
 
 class EditActivity : AppCompatActivity() {
 
@@ -41,6 +44,9 @@ class EditActivity : AppCompatActivity() {
             binding.swtApp.isChecked = survey.appMovil
             binding.edtAge.setText(survey.age)
 
+            binding.editDate.setText(survey.date)
+            binding.editTime.setText(survey.time)
+
             when (survey.food)
             {
                 "Wings" ->
@@ -56,7 +62,8 @@ class EditActivity : AppCompatActivity() {
             }
             binding.btnEditar.setOnClickListener() {
                 if(binding.editTextName.text.isNotEmpty() && binding.spnGender.selectedItemPosition!=0 && binding.rgbFood.checkedRadioButtonId!=-1
-                        && binding.spnLocation.selectedItemPosition!=0 && binding.spnTipoPedido.selectedItemPosition!=0)
+                        && binding.spnLocation.selectedItemPosition!=0 && binding.spnTipoPedido.selectedItemPosition!=0 && binding.editDate.text.isNotEmpty()
+                        && binding.editTime.text.isNotEmpty())
                 {
                     val survey = EntitySurvey()
 
@@ -66,6 +73,8 @@ class EditActivity : AppCompatActivity() {
                     survey.Zone = binding.spnLocation.selectedItemPosition
                     survey.typeOrder = binding.spnTipoPedido.selectedItemPosition
                     survey.gender = binding.spnGender.selectedItemPosition
+                    survey.date = binding.editDate.text.toString()
+                    survey.time = binding.editTime.text.toString()
 
                     when (binding.rgbFood.checkedRadioButtonId) {
                         binding.rdbWings.id -> {
@@ -97,6 +106,39 @@ class EditActivity : AppCompatActivity() {
                 {
                     Snackbar.make(it, "Todos los campos son OBLIGATORIOS", Snackbar.LENGTH_LONG).show()
                 }
+            }
+
+            binding.editDate.setOnClickListener {
+                val myCalendar = Calendar.getInstance()
+
+                var year = myCalendar.get(Calendar.YEAR)
+                var month = myCalendar.get(Calendar.MONTH)
+                var day = myCalendar.get(Calendar.DAY_OF_MONTH)
+
+                /// y,m,d son las que se detonan en el evento
+                val dpd = DatePickerDialog(this@EditActivity, DatePickerDialog.OnDateSetListener { view, y, m, d ->
+
+
+
+                    binding.editDate.setText("${twoDigits(d)}/${twoDigits(m+1)}/$y")
+
+                },year, month, day)
+
+                dpd.show()
+            }
+
+            binding.editTime.setOnClickListener {
+                val myCalendar = Calendar.getInstance()
+                val hourOfDay = myCalendar.get(Calendar.HOUR_OF_DAY)
+                val minute = myCalendar.get(Calendar.MINUTE)
+
+                val tpd = TimePickerDialog(this@EditActivity, TimePickerDialog.OnTimeSetListener { view, h, m ->
+
+                    binding.editTime.setText("${twoDigits(h)}:${twoDigits(m)}")
+
+                },hourOfDay, minute,false)
+
+                tpd.show()
             }
 
         }
@@ -152,5 +194,12 @@ class EditActivity : AppCompatActivity() {
         binding.edtAge.setText("")
         binding.spnLocation.setSelection(0)
         binding.spnTipoPedido.setSelection(0)
+        binding.editTime.setText("")
+        binding.editDate.setText("")
+    }
+
+    fun twoDigits(number:Int):String
+    {
+        return if(number<=9) "0$number" else number.toString()
     }
 }
