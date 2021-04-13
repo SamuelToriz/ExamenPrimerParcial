@@ -39,4 +39,5 @@
     <string name="AppMovil">Utilizarias una app Movil?</string>
     <string name="hint_date">Click para fecha</string>
     <string name="hint_time">Click para hora</string>
+    <string name="txt_Db">Ver lista DB</string>
 </resources>

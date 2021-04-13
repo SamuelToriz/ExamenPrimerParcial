@@ -92,6 +92,13 @@ class HomeActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
 
+                R.id.itmDbAdapter -> {
+                    val intent = Intent(this@HomeActivity, DataBaseActivity::class.java).apply {
+                        putExtra(Constants.ID, id)
+                    }
+                    startActivity(intent)
+                }
+
                 R.id.itmlisSalir -> {
                     finish()
                     //Termina el sistema

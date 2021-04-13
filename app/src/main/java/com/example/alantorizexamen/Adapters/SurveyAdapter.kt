@@ -11,20 +11,16 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.alantorizexamen.Data.ListSurvey
-import com.example.alantorizexamen.Data.ListUsers
-import com.example.alantorizexamen.Data.SurveyDb
 import com.example.alantorizexamen.DetailActivity
 import com.example.alantorizexamen.EditActivity
 import com.example.alantorizexamen.Entity.EntitySurvey
 import com.example.alantorizexamen.R
 import com.example.alantorizexamen.Tools.Constants
-import com.example.alantorizexamen.databinding.ItemSurveyBinding
 import com.example.alantorizexamen.databinding.ItemUserBinding
 import com.google.android.material.snackbar.Snackbar
 
-class UserAdapter(val userList: ArrayList<EntitySurvey>, val context: Context) : RecyclerView.Adapter<SurveyHolder>()
+class SurveyAdapter(val surveyList: ArrayList<EntitySurvey>, val context: Context) : RecyclerView.Adapter<SurveyHolder>()
 {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SurveyHolder {
 
         val inflater = LayoutInflater.from(parent.context)
@@ -34,24 +30,21 @@ class UserAdapter(val userList: ArrayList<EntitySurvey>, val context: Context) :
 
     override fun getItemCount(): Int {
 
-        return  userList.size
+        return  surveyList.size
     }
 
-    override fun onBindViewHolder(holder: SurveyHolder, position: Int)
-    {
+    override fun onBindViewHolder(holder: SurveyHolder, position: Int) {
 
-        survey = SurveyDb(context)
-
-        holder.txtvFullName.text = "${userList[position].nameSurvey}"
-        holder.txtGender.text = if(userList[position].gender==1) "Masculino" else "Femenino"
-        holder.email.text = if(userList[position].recomend==true) "Nos Recomendaria" else "No nos recomendaria"
-        holder.imgUser.setImageResource(if(userList[position].gender==1) (R.drawable.boy) else (R.drawable.girl))
-        holder.txtvDate.text = "Fecha de creacion ${userList[position].date}"
-        holder.txtvTime.text = "Hora de creacion ${userList[position].time}"
+        holder.txtvFullName.text = "${surveyList[position].nameSurvey}"
+        holder.txtGender.text = if(surveyList[position].gender==1) "Masculino" else "Femenino"
+        holder.email.text = if(surveyList[position].recomend==true) "Nos Recomendaria" else "No nos recomendaria"
+        holder.imgUser.setImageResource(if(surveyList[position].gender==1) (R.drawable.boy) else (R.drawable.girl))
+        holder.txtvDate.text = "Fecha de creacion ${surveyList[position].date}"
+        holder.txtvTime.text = "Hora de creacion ${surveyList[position].time}"
 
 
         holder.btnDelete.setOnClickListener{
-            miDialogo(userList[position].nameSurvey, it).show()
+            miDialogo(surveyList[position].nameSurvey, it).show()
         }
         holder.btnEdit.setOnClickListener{
 
@@ -72,7 +65,7 @@ class UserAdapter(val userList: ArrayList<EntitySurvey>, val context: Context) :
     private fun miDialogo(name:String, view:View) : AlertDialog
     {
         val myAlert = AlertDialog.Builder(context)
-        myAlert.setTitle("Eliminar Survey")
+        myAlert.setTitle("Eliminar Surve")
         myAlert.setIcon(R.drawable.columpio)
         myAlert.setMessage("Desea eliminar el SURVEY seleccionado?")
         myAlert.setPositiveButton("Si"){ dialogInterface: DialogInterface, i: Int ->
@@ -98,9 +91,9 @@ class UserAdapter(val userList: ArrayList<EntitySurvey>, val context: Context) :
 }
 
 
-class UserHolder(view:View):RecyclerView.ViewHolder(view)
+class SurveyHolder(view: View): RecyclerView.ViewHolder(view)
 {
-    val binding = ItemSurveyBinding.bind(view)
+    val binding = ItemUserBinding.bind(view)
 
     var imgUser = binding.imgUser
     val txtGender = binding.txtvGender

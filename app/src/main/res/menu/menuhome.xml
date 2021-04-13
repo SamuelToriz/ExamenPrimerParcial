@@ -10,6 +10,10 @@
         android:title="@string/txt_list"
         app:showAsAction="never"></item>
 
+    <item android:id="@+id/itmDbAdapter"
+        android:title="@string/txt_Db"
+        app:showAsAction="never"></item>
+
     <item android:id="@+id/itmlisSalir"
         android:title="@string/txt_list_salir"
         app:showAsAction="never"></item>
