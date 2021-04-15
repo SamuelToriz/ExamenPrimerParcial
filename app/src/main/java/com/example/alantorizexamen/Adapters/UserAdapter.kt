@@ -40,8 +40,6 @@ class UserAdapter(val userList: ArrayList<EntitySurvey>, val context: Context) :
     override fun onBindViewHolder(holder: SurveyHolder, position: Int)
     {
 
-        survey = SurveyDb(context)
-
         holder.txtvFullName.text = "${userList[position].nameSurvey}"
         holder.txtGender.text = if(userList[position].gender==1) "Masculino" else "Femenino"
         holder.email.text = if(userList[position].recomend==true) "Nos Recomendaria" else "No nos recomendaria"

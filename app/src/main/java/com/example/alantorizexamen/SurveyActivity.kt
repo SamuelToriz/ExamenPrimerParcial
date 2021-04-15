@@ -10,6 +10,7 @@ import android.util.Log
 import android.widget.Toast
 import com.example.alantorizexamen.Data.ListSurvey
 import com.example.alantorizexamen.Data.ListUsers
+import com.example.alantorizexamen.Data.SurveyDb
 import com.example.alantorizexamen.Entity.EntitySurvey
 import com.example.alantorizexamen.Entity.EntityUser
 import com.example.alantorizexamen.Tools.Constants
@@ -23,6 +24,7 @@ class SurveyActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivitySurveyBinding
     private val listSurvey = ListSurvey()
+    private val surveylist = SurveyDb(this@SurveyActivity)
     private var id:Int =-3
     private val permission = PermissionsApplications(this@SurveyActivity)
 
@@ -43,6 +45,7 @@ class SurveyActivity : AppCompatActivity() {
             {
                 validateEmptyControls()
             }
+
 
         }
 
@@ -141,6 +144,9 @@ class SurveyActivity : AppCompatActivity() {
 
 
             val index = listSurvey.add(survey)
+
+            val x :Long = surveylist.add(survey)
+            Log.d(Constants.LOG_TAG, "hola" + x.toString())
 
             if (index >= 0)
             {

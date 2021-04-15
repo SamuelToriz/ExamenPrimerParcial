@@ -99,7 +99,7 @@ class SurveyDb (val context: Context)
 
         val sortOrder = "${SurveyContract.Entry.COLUMN_NAME_NAME} DESC"
 
-        val cursor = db.query(SurveyContract.Entry.TABLE_NAME,projection,null,null,null,null,sortOrder)
+        val cursor = db.query(SurveyContract.Entry.TABLE_NAME,projection,null,null,null,null,null)
 
 
         if(cursor.moveToFirst())
@@ -131,5 +131,64 @@ class SurveyDb (val context: Context)
         {
             Log.d(Constants.LOG_TAG, "No hay datos")
         }
+    }
+
+    fun getOne(idStudent:Int) : ArrayList<EntitySurvey>
+    {
+        val list = ArrayList<EntitySurvey>()
+        db=connectionDb.openConnection(ConnectionDb.MODE_READ)
+
+        val projection = arrayOf(BaseColumns._ID,    //0
+                SurveyContract.Entry.COLUMN_NAME_NAME, //1
+                SurveyContract.Entry.COLUMN_NAME_AGE, //2
+                SurveyContract.Entry.COLUMN_NAME_GENDER, //3
+                SurveyContract.Entry.COLUMN_NAME_FOOD, //4
+                SurveyContract.Entry.COLUMN_NAME_DRINK, //5
+                SurveyContract.Entry.COLUMN_NAME_ZONE, //6
+                SurveyContract.Entry.COLUMN_NAME_ORDER_TYPE, //7
+                SurveyContract.Entry.COLUMN_SOCIAL_MEDIA, //8
+                SurveyContract.Entry.COLUMN_APP_MOVIL, //9
+                SurveyContract.Entry.COLUMN_RECOMMEND, //10
+                SurveyContract.Entry.COLUMN_DATE, //11
+                SurveyContract.Entry.COLUMN_TIME) //12
+
+        val where = "${BaseColumns._ID} =?"
+        val args = arrayOf(idStudent.toString())
+
+        val cursor = db.query(SurveyContract.Entry.TABLE_NAME,projection,where,args,null,null,null)
+
+
+
+        if(cursor.moveToFirst())
+        {
+            //cachar los valores en variables
+            //val x:Long = cursor.getLong(0)
+            val survey = EntitySurvey()
+            survey.id = cursor.getLong(0).toInt()
+            survey.nameSurvey = cursor.getString(1)
+            survey.age = cursor.getInt(2).toString()
+            list.add(survey)
+
+            Log.d(Constants.LOG_TAG, "${cursor.getLong(0)}" +
+                    " ${cursor.getString(1)} " +
+                    " ${cursor.getInt(2)} " +
+                    " ${cursor.getInt(3)} " +
+                    " ${cursor.getString(4)}" +
+                    " ${cursor.getString(5)}" +
+                    " ${cursor.getString(6)}" +
+                    " ${cursor.getString(7)}" +
+                    " ${cursor.getString(8)}" +
+                    " ${cursor.getString(9)}" +
+                    " ${cursor.getString(10)}" +
+                    " ${cursor.getString(11)}" +
+                    " ${cursor.getString(12)}" )
+
+        }
+        else
+        {
+            Log.d(Constants.LOG_TAG, "No hay datos")
+        }
+
+        return list
     }
 }

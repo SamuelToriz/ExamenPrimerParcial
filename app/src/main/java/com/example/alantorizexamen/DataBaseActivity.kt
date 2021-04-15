@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.alantorizexamen.Adapters.SurveyAdapter
+import com.example.alantorizexamen.Adapters.UserAdapter
 import com.example.alantorizexamen.Data.ListSurvey
+import com.example.alantorizexamen.Data.SurveyDb
 import com.example.alantorizexamen.Tools.Constants
 import com.example.alantorizexamen.databinding.ActivityDataBaseBinding
 import com.example.alantorizexamen.databinding.ActivityMylistactivityBinding
@@ -33,8 +35,9 @@ class DataBaseActivity : AppCompatActivity()
 
     fun buildRecyclerView()
     {
-        val list = listSurvey.getListSurveyArray(id)
-        val adapter = SurveyAdapter(list, this@DataBaseActivity)
+        val list = SurveyDb(this@DataBaseActivity)
+        list.getAll()
+        val adapter = UserAdapter(list.getOne(id), this@DataBaseActivity)
         val linearLayout = LinearLayoutManager(this@DataBaseActivity, LinearLayoutManager.VERTICAL, false)
 
         binding.rvwSurvey.layoutManager = linearLayout
