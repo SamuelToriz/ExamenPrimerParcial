@@ -75,7 +75,7 @@ class ConnectionDb(val context: Context) : SQLiteOpenHelper(context, DATABASE_NA
 
         const val DROP_TABLE_USER = "DROP TABLE IF EXISTS ${UserContract.Entry.TABLE_NAME}"
 
-
+//tablas
         const val MODE_WRITE=1
         const val MODE_READ=2
     }
